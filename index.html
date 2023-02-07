@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cronômetro Regressivo</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #d8d5ff;
+    }
+    
+    .clock {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 50%;
+      width: 400px;
+      height: 400px;
+      box-shadow: 30px 30px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      font-size: 72px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    button {
+      background-color: #565481;
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      margin-top: 32px;
+      cursor: pointer;
+      border-radius: 30px;
+    }
+  </style>
+</head>
+<body>
+    <body>
+        <div class="container">
+          <div class="clock">
+            <h1 id="timer">1:00</h1>
+            <button id="start-stop">Iniciar</button>
+          </div>
+        </div>
+        
+        <script>
+          // o código JavaScript para o cronômetro é o mesmo descrito acima
+        </script>
+      </body>
+ 
+  <script>
+    const timerDisplay = document.getElementById("timer");
+    const startStopButton = document.getElementById("start-stop");
+    let intervalId;
+    let remainingTime = 60;
+    
+    startStopButton.addEventListener("click", function() {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      } else {
+        intervalId = setInterval(function() {
+          if (remainingTime === 0) {
+            clearInterval(intervalId);
+            intervalId = null;
+          } else {
+            remainingTime--;
+            let minutes = Math.floor(remainingTime / 60);
+            let seconds = remainingTime % 60;
+            timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+          }
+        }, 1000);
+      }
+    });
+  </script>
+</body>
+</html>
